@@ -213,7 +213,7 @@ BabyTracker/
 
 ### Phase 1: Projekt-Setup und Grundkonfiguration
 
-#### [ ] Task 1.1: Gradle-Projekt initialisieren
+#### [x] Task 1.1: Gradle-Projekt initialisieren
 - **Datei:** `build.gradle.kts` (Root-Level)
 - **Logik:**
   - Definiere Kotlin Version `1.9.20`
@@ -221,7 +221,7 @@ BabyTracker/
   - Konfiguriere `buildscript` Block mit Maven Central und Google Repositories
 - **Output:** Funktionierendes Root-Build-Script
 
-#### [ ] Task 1.2: App-Modul Build-Script konfigurieren
+#### [x] Task 1.2: App-Modul Build-Script konfigurieren
 - **Datei:** `app/build.gradle.kts`
 - **Logik:**
   - Setze `compileSdk = 34`, `minSdk = 26`, `targetSdk = 34`
