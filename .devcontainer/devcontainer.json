@@ -1,0 +1,79 @@
+{
+	"name": "BabyTracker Android Development",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mathiasfrohlich.kotlin",
+				"fwcd.kotlin",
+				"vscjava.vscode-java-pack",
+				"vscjava.vscode-gradle",
+				"toba.vsfire",
+				"eamodio.gitlens",
+				"EditorConfig.EditorConfig",
+				"streetsidesoftware.code-spell-checker",
+				"ms-azuretools.vscode-docker"
+			],
+			"settings": {
+				"kotlin.compiler.jvm.target": "17",
+				"java.configuration.runtimes": [
+					{
+						"name": "JavaSE-17",
+						"path": "/usr/lib/jvm/java-17-openjdk-amd64",
+						"default": true
+					}
+				],
+				"gradle.nestedProjects": true,
+				"files.exclude": {
+					"**/.gradle": true,
+					"**/build": true,
+					"**/.idea": true
+				}
+			}
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "17",
+			"jdkDistro": "ms"
+		},
+		"ghcr.io/devcontainers/features/git:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "lts"
+		},
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"installOhMyZsh": true,
+			"upgradePackages": true,
+			"username": "vscode",
+			"userUid": "1000",
+			"userGid": "1000"
+		}
+	},
+	"postCreateCommand": "bash .devcontainer/setup.sh",
+	"forwardPorts": [
+		8080,
+		5037
+	],
+	"remoteEnv": {
+		"ANDROID_HOME": "/opt/android-sdk",
+		"ANDROID_SDK_ROOT": "/opt/android-sdk",
+		"PATH": "${containerEnv:PATH}:/opt/android-sdk/cmdline-tools/latest/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/emulator",
+		"JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64"
+	},
+	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+	],
+	"remoteUser": "vscode",
+	"capAdd": [
+		"SYS_PTRACE"
+	],
+	"runArgs": [
+		"--privileged"
+	]
+}
