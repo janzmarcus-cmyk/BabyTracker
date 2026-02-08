@@ -1,0 +1,69 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check if Gradle project exists
+      id: check-gradle
+      run: |
+        if [ -f "gradlew" ]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "⚠️ No Gradle project found. Skipping tests."
+        fi
+      
+    - name: Set up JDK 17 (with Gradle cache)
+      if: steps.check-gradle.outputs.exists == 'true'
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+        
+    - name: Set up JDK 17 (without cache)
+      if: steps.check-gradle.outputs.exists == 'false'
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+      
+    - name: Grant execute permission for gradlew
+      if: steps.check-gradle.outputs.exists == 'true'
+      run: chmod +x gradlew
+      
+    - name: Run all unit tests
+      if: steps.check-gradle.outputs.exists == 'true'
+      run: ./gradlew test --continue
+      
+    - name: Upload test reports
+      uses: actions/upload-artifact@v4
+      if: always() && steps.check-gradle.outputs.exists == 'true'
+      with:
+        name: test-reports
+        path: |
+          **/build/reports/tests/**
+          **/build/test-results/**
+        retention-days: 30
+        
+    - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always() && steps.check-gradle.outputs.exists == 'true'
+      with:
+        files: |
+          **/build/test-results/**/*.xml
