@@ -30,7 +30,7 @@ sudo apt-get install -y \
 # Install Android SDK
 ANDROID_SDK_ROOT="/opt/android-sdk"
 ANDROID_HOME="${ANDROID_SDK_ROOT}"
-CMDLINE_TOOLS_VERSION="11076708"  # Latest as of creation
+CMDLINE_TOOLS_VERSION="11076708"  # Version 11.0 from December 2023
 
 if [ ! -d "$ANDROID_SDK_ROOT" ]; then
     echo "📱 Installing Android SDK..."
@@ -75,7 +75,7 @@ if ! command -v gradle &> /dev/null; then
     rm gradle.zip
     echo "✅ Gradle ${GRADLE_VERSION} installed successfully"
 else
-    echo "✅ Gradle already installed: $(gradle --version | head -1)"
+    echo "✅ Gradle already installed: $(gradle --version 2>&1 | grep Gradle | head -1)"
 fi
 
 # Install ktlint for code quality

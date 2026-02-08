@@ -43,7 +43,7 @@ This directory contains the Dev Container configuration for the BabyTracker Andr
 1. **Open the Project in Dev Container**
    - Open the project folder in VS Code
    - Press `F1` and select "Dev Containers: Reopen in Container"
-   - Wait for the container to build and setup to complete (first time may take 10-15 minutes)
+   - Wait for the container to build and set up to complete (first time may take 10-15 minutes)
 
 2. **Verify Setup**
    ```bash
