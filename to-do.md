@@ -213,7 +213,7 @@ BabyTracker/
 
 ### Phase 1: Projekt-Setup und Grundkonfiguration
 
-#### [ ] Task 1.1: Gradle-Projekt initialisieren
+#### [x] Task 1.1: Gradle-Projekt initialisieren
 - **Datei:** `build.gradle.kts` (Root-Level)
 - **Logik:**
   - Definiere Kotlin Version `1.9.20`
