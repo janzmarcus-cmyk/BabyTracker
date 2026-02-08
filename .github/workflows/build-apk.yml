@@ -24,14 +24,27 @@ jobs:
         distribution: 'temurin'
         cache: gradle
         
+    - name: Check if Gradle project exists
+      id: check-gradle
+      run: |
+        if [ -f "gradlew" ]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "⚠️ No Gradle project found. Skipping APK build."
+        fi
+      
     - name: Grant execute permission for gradlew
+      if: steps.check-gradle.outputs.exists == 'true'
       run: chmod +x gradlew
       
     - name: Build debug APK
+      if: steps.check-gradle.outputs.exists == 'true'
       run: ./gradlew assembleDebug --stacktrace
       
     - name: Upload APK
       uses: actions/upload-artifact@v4
+      if: steps.check-gradle.outputs.exists == 'true'
       with:
         name: app-debug
         path: app/build/outputs/apk/debug/*.apk
@@ -39,7 +52,7 @@ jobs:
         
     - name: Comment APK download link on PR
       uses: actions/github-script@v7
-      if: github.event_name == 'pull_request'
+      if: github.event_name == 'pull_request' && steps.check-gradle.outputs.exists == 'true'
       with:
         script: |
           github.rest.issues.createComment({

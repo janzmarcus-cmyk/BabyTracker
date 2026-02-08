@@ -25,15 +25,27 @@ jobs:
         distribution: 'temurin'
         cache: gradle
         
+    - name: Check if Gradle project exists
+      id: check-gradle
+      run: |
+        if [ -f "gradlew" ]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "⚠️ No Gradle project found. Skipping tests."
+        fi
+      
     - name: Grant execute permission for gradlew
+      if: steps.check-gradle.outputs.exists == 'true'
       run: chmod +x gradlew
       
     - name: Run all unit tests
+      if: steps.check-gradle.outputs.exists == 'true'
       run: ./gradlew test --continue
       
     - name: Upload test reports
       uses: actions/upload-artifact@v4
-      if: always()
+      if: always() && steps.check-gradle.outputs.exists == 'true'
       with:
         name: test-reports
         path: |
@@ -43,7 +55,7 @@ jobs:
         
     - name: Publish test results
       uses: EnricoMi/publish-unit-test-result-action@v2
-      if: always()
+      if: always() && steps.check-gradle.outputs.exists == 'true'
       with:
         files: |
           **/build/test-results/**/*.xml
