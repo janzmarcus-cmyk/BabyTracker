@@ -221,7 +221,7 @@ BabyTracker/
   - Konfiguriere `buildscript` Block mit Maven Central und Google Repositories
 - **Output:** Funktionierendes Root-Build-Script
 
-#### [ ] Task 1.2: App-Modul Build-Script konfigurieren
+#### [x] Task 1.2: App-Modul Build-Script konfigurieren
 - **Datei:** `app/build.gradle.kts`
 - **Logik:**
   - Setze `compileSdk = 34`, `minSdk = 26`, `targetSdk = 34`
