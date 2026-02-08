@@ -237,7 +237,7 @@ BabyTracker/
   - Konfiguriere `kapt` und `ksp` Plugins
 - **Output:** Vollständiges App-Build-Script mit allen Dependencies
 
-#### [ ] Task 1.3: Gradle Version Catalog erstellen
+#### [x] Task 1.3: Gradle Version Catalog erstellen
 - **Datei:** `gradle/libs.versions.toml`
 - **Logik:**
   - Definiere `[versions]` Block mit allen Library-Versionen
