@@ -245,7 +245,7 @@ BabyTracker/
   - Definiere `[plugins]` Block für AGP, Kotlin, Hilt, KSP
 - **Output:** Zentralisierte Dependency-Verwaltung
 
-#### [ ] Task 1.4: Android Manifest erstellen
+#### [x] Task 1.4: Android Manifest erstellen
 - **Datei:** `app/src/main/AndroidManifest.xml`
 - **Logik:**
   - Setze Package Name: `com.babytracker`
