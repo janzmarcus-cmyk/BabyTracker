@@ -1,4 +1,5 @@
 {
+  "_comment": "This is a placeholder Firebase configuration file. Replace this with your actual google-services.json file downloaded from the Firebase Console before deployment. See README.md for setup instructions.",
   "project_info": {
     "project_number": "123456789",
     "project_id": "babytracker-placeholder",
