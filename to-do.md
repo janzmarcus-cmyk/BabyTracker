@@ -255,7 +255,7 @@ BabyTracker/
   - Setze `android:theme="@android:style/Theme.Material3.DayNight.NoActionBar"`
 - **Output:** Gültiges Manifest
 
-#### [ ] Task 1.5: Application-Klasse erstellen
+#### [x] Task 1.5: Application-Klasse erstellen
 - **Datei:** `app/src/main/java/com/babytracker/BabyTrackerApplication.kt`
 - **Logik:**
   - Klasse erbt von `Application()`
