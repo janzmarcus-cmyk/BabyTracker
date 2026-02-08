@@ -1,0 +1,10 @@
+# Android Standard Ignore Patterns
+.gradle/
+build/
+*.iml
+.idea/
+local.properties
+.DS_Store
+
+# Firebase Configuration
+google-services.json

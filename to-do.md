@@ -271,7 +271,7 @@ BabyTracker/
     ```
 - **Output:** Hilt-fähige Application-Klasse
 
-#### [ ] Task 1.6: Git-Ignore konfigurieren
+#### [x] Task 1.6: Git-Ignore konfigurieren
 - **Datei:** `.gitignore`
 - **Logik:**
   - Füge Standard-Android-Ignore-Patterns hinzu: `.gradle/`, `build/`, `*.iml`, `.idea/`, `local.properties`, `.DS_Store`
